@@ -17,19 +17,12 @@ function Router() {
   );
 }
 
-function App() {
+import { SharkChat } from "./components/SharkChat";
+
+export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AuthProvider>
-          <AppProvider>
-            <Toaster />
-            <Router />
-          </AppProvider>
-        </AuthProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <div style={{ minHeight: "100vh", background: "#090e10" }}>
+      <SharkChat />
+    </div>
   );
 }
-
-export default App;
