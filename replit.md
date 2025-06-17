@@ -118,12 +118,69 @@ SHARKSO🦈IAL is a modern, modular social media platform built with React, Type
    - **Solution**: Lightweight ORM with excellent TypeScript integration
    - **Benefits**: Type safety, good performance, easy migrations
 
+## Mock/Production Mode Toggle
+
+### Quick Mode Switching
+
+**For Development (Mock Mode)**:
+```bash
+# Set in Replit Secrets or .env
+USE_MOCK=true
+```
+
+**For Production Testing**:
+```bash
+# Set in Replit Secrets or .env  
+USE_MOCK=false
+DATABASE_URL=your_postgresql_url
+JWT_SECRET=your_secret_key
+```
+
+### Mode Features
+
+#### Mock Mode (Development)
+- 🚀 **Zero Setup**: Works immediately without external services
+- 📋 **Test Data**: Pre-populated with Thai users and conversations
+- ⚡ **Fast Iteration**: No database setup required
+- 🔄 **Fresh Data**: Resets on every restart
+
+#### Production Mode
+- 🔐 **Real Auth**: Actual authentication with JWT tokens
+- 💾 **Persistent Data**: PostgreSQL database storage
+- 🌐 **External Services**: Firebase, Supabase integrations ready
+- 📱 **Full Features**: Complete social platform functionality
+
+### Replit Environment Setup
+
+1. **Go to Secrets tab** in Replit
+2. **Add environment variable**: `USE_MOCK` = `true` (for development) or `false` (for production)
+3. **For Production mode**, also add:
+   - `DATABASE_URL`
+   - `JWT_SECRET`
+   - External service keys as needed
+4. **Restart the Repl** to apply changes
+
+### Verification
+
+Check console output on startup:
+```
+🚀 SHARKSO🦈IAL starting in MOCK mode
+   Environment: development
+   Port: 5000
+   Mock Data: Enabled
+📋 Mock data initialized - Ready for testing!
+```
+
 ## Changelog
 
 ```
 Changelog:
-- June 17, 2025. Initial setup
-- December 24, 2024. Added mock users for chat testing:
+- December 24, 2024: Enhanced Mock/Production toggle system
+  * Added comprehensive environment validation
+  * Improved startup logging and mode indicators
+  * Created detailed switching documentation
+  * Added Replit-specific setup instructions
+- December 24, 2024: Added mock users for chat testing
   * สมชาย ใจดี (somchai) - Full-stack developer, online
   * มาลี สวยงาม (malee) - UX/UI Designer, offline (30 min ago)
   * Created sample chats: 2 private chats + 1 group chat
