@@ -17,7 +17,7 @@ export class MockService {
 
   private users: User[] = [
     {
-      id: "1",
+      id: 1,
       username: "admin",
       email: "admin@example.com",
       displayName: "Administrator",
@@ -25,11 +25,10 @@ export class MockService {
       bio: "System administrator and platform manager",
       isOnline: true,
       lastSeen: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: new Date()
     },
     {
-      id: "2",
+      id: 2,
       username: "somchai",
       email: "somchai@example.com",
       displayName: "สมชาย ใจดี",
@@ -37,11 +36,10 @@ export class MockService {
       bio: "นักพัฒนา Full-stack จากกรุงเทพฯ ชอบเขียนโค้ดและดูซีรีส์",
       isOnline: true,
       lastSeen: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: new Date()
     },
     {
-      id: "3",
+      id: 3,
       username: "malee",
       email: "malee@example.com",
       displayName: "มาลี สวยงาม",
@@ -49,116 +47,183 @@ export class MockService {
       bio: "UX/UI Designer ที่ชอบสร้างสรรค์ประสบการณ์ที่ดีให้ผู้ใช้",
       isOnline: false,
       lastSeen: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: new Date()
+    },
+    {
+      id: 4,
+      username: "hackerboy",
+      email: "hackerboy@example.com",
+      displayName: "Hacker Boy",
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bio: "สาย penetration test ชอบ terminal สีเขียว",
+      isOnline: true,
+      lastSeen: new Date(),
+      createdAt: new Date()
+    },
+    {
+      id: 5,
+      username: "cybergirl",
+      email: "cybergirl@example.com",
+      displayName: "Cyber Girl",
+      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      bio: "DevOps & Security enthusiast",
+      isOnline: false,
+      lastSeen: new Date(Date.now() - 10 * 60 * 1000), // 10 minutes ago
+      createdAt: new Date()
     }
   ];
   private chats: any[] = [
     {
-      id: "chat-1",
-      participants: ["1", "2"],
+      id: 1,
+      participants: [1, 2],
       isGroup: false,
       name: null,
       description: null,
       avatar: null,
-      createdBy: "1",
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdBy: 1,
+      createdAt: new Date()
     },
     {
-      id: "chat-2", 
-      participants: ["1", "3"],
+      id: 2, 
+      participants: [1, 3],
       isGroup: false,
       name: null,
       description: null,
       avatar: null,
-      createdBy: "1",
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdBy: 1,
+      createdAt: new Date()
     },
     {
-      id: "chat-3",
-      participants: ["1", "2", "3"],
+      id: 3,
+      participants: [1, 2, 3],
       isGroup: true,
       name: "ทีมพัฒนา SHARKSO🦈IAL",
       description: "กลุ่มสำหรับพูดคุยเกี่ยวกับการพัฒนาแพลตฟอร์ม",
       avatar: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=150&h=150&fit=crop",
-      createdBy: "1",
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdBy: 1,
+      createdAt: new Date()
+    },
+    {
+      id: 4,
+      participants: [1, 4],
+      isGroup: false,
+      name: null,
+      description: null,
+      avatar: null,
+      createdBy: 1,
+      createdAt: new Date()
+    },
+    {
+      id: 5,
+      participants: [1, 5],
+      isGroup: false,
+      name: null,
+      description: null,
+      avatar: null,
+      createdBy: 1,
+      createdAt: new Date()
     }
   ];
   private messages: Message[] = [
     {
-      id: "msg-1",
-      chatId: "chat-1",
-      senderId: "2",
+      id: 1,
+      chatId: 1,
+      senderId: 2,
       content: "สวัสดีครับ! ระบบแชทใช้งานได้แล้วใช่ไหมครับ?",
       messageType: "text",
-      createdAt: new Date(Date.now() - 60 * 60 * 1000), // 1 hour ago
-      updatedAt: new Date(Date.now() - 60 * 60 * 1000)
+      isRead: false,
+      createdAt: new Date(Date.now() - 60 * 60 * 1000)
     },
     {
-      id: "msg-2",
-      chatId: "chat-1", 
-      senderId: "1",
+      id: 2,
+      chatId: 1, 
+      senderId: 1,
       content: "ใช้ได้แล้วครับ! กำลังทดสอบฟีเจอร์ต่างๆ อยู่",
       messageType: "text",
-      createdAt: new Date(Date.now() - 55 * 60 * 1000), // 55 minutes ago
-      updatedAt: new Date(Date.now() - 55 * 60 * 1000)
+      isRead: false,
+      createdAt: new Date(Date.now() - 55 * 60 * 1000)
     },
     {
-      id: "msg-3",
-      chatId: "chat-2",
-      senderId: "3",
+      id: 3,
+      chatId: 2,
+      senderId: 3,
       content: "UI ดูดีมากเลยค่ะ! ชอบธีมสีฟ้าแบบนี้",
       messageType: "text", 
-      createdAt: new Date(Date.now() - 45 * 60 * 1000), // 45 minutes ago
-      updatedAt: new Date(Date.now() - 45 * 60 * 1000)
+      isRead: false,
+      createdAt: new Date(Date.now() - 45 * 60 * 1000)
     },
     {
-      id: "msg-4",
-      chatId: "chat-3",
-      senderId: "1",
+      id: 4,
+      chatId: 3,
+      senderId: 1,
       content: "ทุกคนทดสอบฟีเจอร์แชทกันได้แล้วนะครับ",
       messageType: "text",
-      createdAt: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
-      updatedAt: new Date(Date.now() - 30 * 60 * 1000)
+      isRead: false,
+      createdAt: new Date(Date.now() - 30 * 60 * 1000)
     },
     {
-      id: "msg-5",
-      chatId: "chat-3",
-      senderId: "2", 
+      id: 5,
+      chatId: 3,
+      senderId: 2, 
       content: "เยี่ยมเลยครับ! ระบบเรียลไทม์ทำงานได้ดี",
       messageType: "text",
-      createdAt: new Date(Date.now() - 25 * 60 * 1000), // 25 minutes ago
-      updatedAt: new Date(Date.now() - 25 * 60 * 1000)
+      isRead: false,
+      createdAt: new Date(Date.now() - 25 * 60 * 1000)
+    },
+    {
+      id: 6,
+      chatId: 4,
+      senderId: 4,
+      content: "Yo! Hacker Boy รายงานตัว 😎",
+      messageType: "text",
+      isRead: false,
+      createdAt: new Date(Date.now() - 10 * 60 * 1000)
+    },
+    {
+      id: 7,
+      chatId: 5,
+      senderId: 5,
+      content: "สวัสดีค่ะ Cyber Girl เอง ฝากตัวด้วย!",
+      messageType: "text",
+      isRead: false,
+      createdAt: new Date(Date.now() - 5 * 60 * 1000)
     }
   ];
   private friendships: Friendship[] = [
     {
-      id: "friendship-1",
-      userId: "1",
-      friendId: "2", 
+      id: 1,
+      userId: 1,
+      friendId: 2, 
       status: "accepted",
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: new Date()
     },
     {
-      id: "friendship-2",
-      userId: "1",
-      friendId: "3",
+      id: 2,
+      userId: 1,
+      friendId: 3,
       status: "accepted", 
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: new Date()
     },
     {
-      id: "friendship-3",
-      userId: "2",
-      friendId: "3",
+      id: 3,
+      userId: 2,
+      friendId: 3,
       status: "accepted",
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: new Date()
+    },
+    {
+      id: 4,
+      userId: 1,
+      friendId: 4,
+      status: "accepted",
+      createdAt: new Date()
+    },
+    {
+      id: 5,
+      userId: 1,
+      friendId: 5,
+      status: "accepted",
+      createdAt: new Date()
     }
   ];
 
@@ -218,6 +283,28 @@ export class MockService {
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
         isOnline: true,
         lastSeen: new Date(),
+        createdAt: new Date(),
+      },
+      {
+        id: 5,
+        username: "hackerboy",
+        password: "mock-password",
+        displayName: "Hacker Boy",
+        bio: "สาย penetration test ชอบ terminal สีเขียว",
+        avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+        isOnline: true,
+        lastSeen: new Date(),
+        createdAt: new Date(),
+      },
+      {
+        id: 6,
+        username: "cybergirl",
+        password: "mock-password",
+        displayName: "Cyber Girl",
+        bio: "DevOps & Security enthusiast",
+        avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+        isOnline: false,
+        lastSeen: new Date(Date.now() - 10 * 60 * 1000),
         createdAt: new Date(),
       }
     ];

@@ -17,8 +17,6 @@ function Router() {
   );
 }
 
-import { SharkChat } from "./components/SharkChat";
-
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -26,7 +24,6 @@ export default function App() {
         <AuthProvider>
           <AppProvider>
             <Router />
-            <SharkChat />
             <Toaster />
           </AppProvider>
         </AuthProvider>

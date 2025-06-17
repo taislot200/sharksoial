@@ -68,21 +68,96 @@ export class MemStorage implements IStorage {
   private currentMessageId: number;
 
   constructor() {
-    this.users = new Map();
+    this.users = new Map([
+      [1, {
+        id: 1,
+        username: "admin",
+        password: "mockpass",
+        displayName: "Administrator",
+        bio: "System administrator and platform manager",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        isOnline: true,
+        lastSeen: new Date(),
+        createdAt: new Date()
+      }],
+      [2, {
+        id: 2,
+        username: "somchai",
+        password: "mockpass",
+        displayName: "สมชาย ใจดี",
+        bio: "นักพัฒนา Full-stack จากกรุงเทพฯ ชอบเขียนโค้ดและดูซีรีส์",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        isOnline: true,
+        lastSeen: new Date(),
+        createdAt: new Date()
+      }],
+      [3, {
+        id: 3,
+        username: "malee",
+        password: "mockpass",
+        displayName: "มาลี สวยงาม",
+        bio: "UX/UI Designer ที่ชอบสร้างสรรค์ประสบการณ์ที่ดีให้ผู้ใช้",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=150&h=150&fit=crop=face",
+        isOnline: false,
+        lastSeen: new Date(Date.now() - 30 * 60 * 1000),
+        createdAt: new Date()
+      }],
+      [4, {
+        id: 4,
+        username: "hackerboy",
+        password: "mockpass",
+        displayName: "Hacker Boy",
+        bio: "สาย penetration test ชอบ terminal สีเขียว",
+        avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+        isOnline: true,
+        lastSeen: new Date(),
+        createdAt: new Date()
+      }],
+      [5, {
+        id: 5,
+        username: "cybergirl",
+        password: "mockpass",
+        displayName: "Cyber Girl",
+        bio: "DevOps & Security enthusiast",
+        avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+        isOnline: false,
+        lastSeen: new Date(Date.now() - 10 * 60 * 1000),
+        createdAt: new Date()
+      }]
+    ]);
     this.posts = new Map();
     this.comments = new Map();
-    this.friendships = new Map();
-    this.chats = new Map();
-    this.messages = new Map();
+    this.friendships = new Map([
+      [1, { id: 1, userId: 1, friendId: 2, status: "accepted", createdAt: new Date() }],
+      [2, { id: 2, userId: 1, friendId: 3, status: "accepted", createdAt: new Date() }],
+      [3, { id: 3, userId: 2, friendId: 3, status: "accepted", createdAt: new Date() }],
+      [4, { id: 4, userId: 1, friendId: 4, status: "accepted", createdAt: new Date() }],
+      [5, { id: 5, userId: 1, friendId: 5, status: "accepted", createdAt: new Date() }]
+    ]);
+    this.chats = new Map([
+      [1, { id: 1, name: null, isGroup: false, avatar: null, createdAt: new Date() }],
+      [2, { id: 2, name: null, isGroup: false, avatar: null, createdAt: new Date() }],
+      [3, { id: 3, name: "ทีมพัฒนา SHARKSO🦈IAL", isGroup: true, avatar: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=150&h=150&fit=crop", createdAt: new Date() }],
+      [4, { id: 4, name: null, isGroup: false, avatar: null, createdAt: new Date() }],
+      [5, { id: 5, name: null, isGroup: false, avatar: null, createdAt: new Date() }]
+    ]);
+    this.messages = new Map([
+      [1, { id: 1, chatId: 1, senderId: 2, content: "สวัสดีครับ! ระบบแชทใช้งานได้แล้วใช่ไหมครับ?", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 60 * 60 * 1000) }],
+      [2, { id: 2, chatId: 1, senderId: 1, content: "ใช้ได้แล้วครับ! กำลังทดสอบฟีเจอร์ต่างๆ อยู่", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 55 * 60 * 1000) }],
+      [3, { id: 3, chatId: 2, senderId: 3, content: "UI ดูดีมากเลยค่ะ! ชอบธีมสีฟ้าแบบนี้", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 45 * 60 * 1000) }],
+      [4, { id: 4, chatId: 3, senderId: 1, content: "ทุกคนทดสอบฟีเจอร์แชทกันได้แล้วนะครับ", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 30 * 60 * 1000) }],
+      [5, { id: 5, chatId: 3, senderId: 2, content: "เยี่ยมเลยครับ! ระบบเรียลไทม์ทำงานได้ดี", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 25 * 60 * 1000) }],
+      [6, { id: 6, chatId: 4, senderId: 4, content: "Yo! Hacker Boy รายงานตัว 😎", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 10 * 60 * 1000) }],
+      [7, { id: 7, chatId: 5, senderId: 5, content: "สวัสดีค่ะ Cyber Girl เอง ฝากตัวด้วย!", messageType: "text", isRead: false, createdAt: new Date(Date.now() - 5 * 60 * 1000) }]
+    ]);
     this.postLikes = new Map();
     this.postSaves = new Map();
-    
-    this.currentUserId = 1;
+    this.currentUserId = 6;
     this.currentPostId = 1;
     this.currentCommentId = 1;
-    this.currentFriendshipId = 1;
-    this.currentChatId = 1;
-    this.currentMessageId = 1;
+    this.currentFriendshipId = 6;
+    this.currentChatId = 6;
+    this.currentMessageId = 8;
   }
 
   async getUser(id: number): Promise<User | undefined> {

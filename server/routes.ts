@@ -113,6 +113,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     console.log('Mock data initialization completed');
   }
 
+  // Mock user endpoint (always returns mock user, no auth required)
+  app.get("/api/user", (req, res) => {
+    const mockService = MockService.getInstance();
+    const user = mockService.getMockUser();
+    res.json(user);
+  });
+
+  // Mock friends endpoint
+  app.get("/api/friends", (req, res) => {
+    const mockService = MockService.getInstance();
+    const friends = mockService.getMockFriends();
+    res.json(friends);
+  });
+
+  // Mock posts endpoint
+  app.get("/api/posts", (req, res) => {
+    const mockService = MockService.getInstance();
+    const posts = mockService.getMockPosts();
+    res.json(posts);
+  });
+
+  // Mock chats endpoint
+  app.get("/api/chats", (req, res) => {
+    const mockService = MockService.getInstance();
+    const chats = mockService.getMockChats();
+    res.json(chats);
+  });
+
   // Auth routes
   app.post("/api/auth/login", async (req, res) => {
     try {

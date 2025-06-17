@@ -2,6 +2,14 @@
 
 > อัปเดตล่าสุด: เพิ่มปุ่มนำทาง "เอกสาร" ใน BottomNavigation สำหรับเข้าถึงเอกสารระบบ
 
+## System Overview
+
+### Mock Mode Policy
+- ทุกโมดูล (SharkAuth, SharkFeed, SharkWallet, SharkChat ฯลฯ) ต้องรองรับ mock mode เพื่อให้สามารถทดสอบ UI ได้โดยไม่ต้องเชื่อมต่อ backend จริง
+- เปิด mock mode ได้ด้วย `.env` (`USE_MOCK=true`) หรือ `window.USE_MOCK = true;` ใน browser
+- ปิด mock mode ได้ด้วย `USE_MOCK=false` หรือไม่กำหนดตัวแปรนี้
+- ดูตัวอย่าง mock data ได้ที่ `client/src/services/mockData.ts`
+
 ## System Philosophy
 
 SHARKSO🦈IAL is built on the principle of **modular flexibility** with **production readiness**. The system uses environment-based toggles to seamlessly switch between mock development services and production-ready implementations.
