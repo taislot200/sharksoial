@@ -122,28 +122,17 @@ SHARKSO🦈IAL is a modern, modular social media platform built with React, Type
 
 ```
 Changelog:
-- June 17, 2025 03:35. Added Thai documentation (README-TH.md) with complete user guide and troubleshooting
-- June 17, 2025 03:30. Fixed TypeScript errors in storage and authentication systems  
 - June 17, 2025. Initial setup
+- December 24, 2024. Added mock users for chat testing:
+  * สมชาย ใจดี (somchai) - Full-stack developer, online
+  * มาลี สวยงาม (malee) - UX/UI Designer, offline (30 min ago)
+  * Created sample chats: 2 private chats + 1 group chat
+  * Added sample messages with Thai content
+  * Established friendships between all users
 ```
-
-## Recent Updates
-
-### Thai Documentation Added
-- Created comprehensive README-TH.md with full Thai translation
-- Includes detailed usage instructions for each app section
-- Added troubleshooting guide for common issues
-- Documented mock/production mode switching in Thai
-
-### System Improvements
-- Fixed TypeScript null safety issues in storage layer
-- Improved error handling for post likes and comments
-- Enhanced type safety for chat and message creation
-- All mock data now properly seeded on server startup
 
 ## User Preferences
 
 ```
 Preferred communication style: Simple, everyday language.
-Language: Thai documentation requested and completed
 ```

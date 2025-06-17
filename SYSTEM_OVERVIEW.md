@@ -1,3 +1,7 @@
+The code modification documents testing setup in the system overview, including mock users and sample data for testing the chat function.
+```
+
+```
 # SHARKSO🦈IAL System Architecture Overview
 
 ## System Philosophy
@@ -23,3 +27,19 @@ export class AuthServiceFactory {
     return new ProductionAuthService();
   }
 }
+
+### Mock Mode (Development)
+1. Application starts with `USE_MOCK=true`
+2. Services automatically switch to mock implementations
+3. Mock data is generated and seeded into the database
+4. API calls return simulated data with realistic delays
+
+#### Mock Users for Testing
+- **Admin** (admin): System administrator - online
+- **สมชาย ใจดี** (somchai): Full-stack developer - online  
+- **มาลี สวยงาม** (malee): UX/UI Designer - offline (30 min ago)
+
+#### Sample Data Includes
+- 2 private chats + 1 group chat ("ทีมพัฒนา SHARKSO🦈IAL")
+- 5 sample messages with Thai content
+- Complete friendship connections between all users

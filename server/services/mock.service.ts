@@ -5,16 +5,163 @@ import {
 
 export class MockService {
   private static instance: MockService;
-  
+
   private constructor() {}
-  
+
   static getInstance(): MockService {
     if (!MockService.instance) {
       MockService.instance = new MockService();
     }
     return MockService.instance;
   }
-  
+
+  private users: User[] = [
+    {
+      id: "1",
+      username: "admin",
+      email: "admin@example.com",
+      displayName: "Administrator",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      bio: "System administrator and platform manager",
+      isOnline: true,
+      lastSeen: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: "2",
+      username: "somchai",
+      email: "somchai@example.com",
+      displayName: "สมชาย ใจดี",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      bio: "นักพัฒนา Full-stack จากกรุงเทพฯ ชอบเขียนโค้ดและดูซีรีส์",
+      isOnline: true,
+      lastSeen: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: "3",
+      username: "malee",
+      email: "malee@example.com",
+      displayName: "มาลี สวยงาม",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=150&h=150&fit=crop&crop=face",
+      bio: "UX/UI Designer ที่ชอบสร้างสรรค์ประสบการณ์ที่ดีให้ผู้ใช้",
+      isOnline: false,
+      lastSeen: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ];
+  private chats: any[] = [
+    {
+      id: "chat-1",
+      participants: ["1", "2"],
+      isGroup: false,
+      name: null,
+      description: null,
+      avatar: null,
+      createdBy: "1",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: "chat-2", 
+      participants: ["1", "3"],
+      isGroup: false,
+      name: null,
+      description: null,
+      avatar: null,
+      createdBy: "1",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: "chat-3",
+      participants: ["1", "2", "3"],
+      isGroup: true,
+      name: "ทีมพัฒนา SHARKSO🦈IAL",
+      description: "กลุ่มสำหรับพูดคุยเกี่ยวกับการพัฒนาแพลตฟอร์ม",
+      avatar: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=150&h=150&fit=crop",
+      createdBy: "1",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ];
+  private messages: Message[] = [
+    {
+      id: "msg-1",
+      chatId: "chat-1",
+      senderId: "2",
+      content: "สวัสดีครับ! ระบบแชทใช้งานได้แล้วใช่ไหมครับ?",
+      messageType: "text",
+      createdAt: new Date(Date.now() - 60 * 60 * 1000), // 1 hour ago
+      updatedAt: new Date(Date.now() - 60 * 60 * 1000)
+    },
+    {
+      id: "msg-2",
+      chatId: "chat-1", 
+      senderId: "1",
+      content: "ใช้ได้แล้วครับ! กำลังทดสอบฟีเจอร์ต่างๆ อยู่",
+      messageType: "text",
+      createdAt: new Date(Date.now() - 55 * 60 * 1000), // 55 minutes ago
+      updatedAt: new Date(Date.now() - 55 * 60 * 1000)
+    },
+    {
+      id: "msg-3",
+      chatId: "chat-2",
+      senderId: "3",
+      content: "UI ดูดีมากเลยค่ะ! ชอบธีมสีฟ้าแบบนี้",
+      messageType: "text", 
+      createdAt: new Date(Date.now() - 45 * 60 * 1000), // 45 minutes ago
+      updatedAt: new Date(Date.now() - 45 * 60 * 1000)
+    },
+    {
+      id: "msg-4",
+      chatId: "chat-3",
+      senderId: "1",
+      content: "ทุกคนทดสอบฟีเจอร์แชทกันได้แล้วนะครับ",
+      messageType: "text",
+      createdAt: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
+      updatedAt: new Date(Date.now() - 30 * 60 * 1000)
+    },
+    {
+      id: "msg-5",
+      chatId: "chat-3",
+      senderId: "2", 
+      content: "เยี่ยมเลยครับ! ระบบเรียลไทม์ทำงานได้ดี",
+      messageType: "text",
+      createdAt: new Date(Date.now() - 25 * 60 * 1000), // 25 minutes ago
+      updatedAt: new Date(Date.now() - 25 * 60 * 1000)
+    }
+  ];
+  private friendships: Friendship[] = [
+    {
+      id: "friendship-1",
+      userId: "1",
+      friendId: "2", 
+      status: "accepted",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: "friendship-2",
+      userId: "1",
+      friendId: "3",
+      status: "accepted", 
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: "friendship-3",
+      userId: "2",
+      friendId: "3",
+      status: "accepted",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ];
+
   getMockUser(): User {
     return {
       id: 1,
@@ -28,7 +175,7 @@ export class MockService {
       createdAt: new Date(),
     };
   }
-  
+
   getMockUserWithStats(): UserWithStats {
     return {
       ...this.getMockUser(),
@@ -37,7 +184,7 @@ export class MockService {
       likesCount: 892,
     };
   }
-  
+
   getMockUsers(): User[] {
     return [
       {
@@ -75,7 +222,7 @@ export class MockService {
       }
     ];
   }
-  
+
   getMockPosts(): PostWithAuthor[] {
     const users = this.getMockUsers();
     return [
@@ -105,7 +252,7 @@ export class MockService {
       }
     ];
   }
-  
+
   getMockChats(): ChatWithLastMessage[] {
     const users = this.getMockUsers();
     return [
@@ -168,7 +315,7 @@ export class MockService {
       }
     ];
   }
-  
+
   getMockFriends(): User[] {
     return [
       {
