@@ -1,47 +1,47 @@
-# SHARKSO🦈IAL - Modular Social Platform
+# SHARKSO🦈IAL - แพลตฟอร์มโซเชียลแบบแยกโมดูล
 
-A modern, modular social media platform built with React, TypeScript, and Express.js. Features a complete mock/production toggle system and separated authentication module for future integration with various auth providers.
+แพลตฟอร์มโซเชียลมีเดียสมัยใหม่ที่สร้างด้วย React, TypeScript และ Express.js มีระบบสลับ mock/production และโมดูล authentication ที่แยกต่างหากสำหรับการผสานรวมกับผู้ให้บริการ auth ต่างๆ ในอนาคต
 
-## 🚀 Features
+## 🚀 ฟีเจอร์
 
-### Core Functionality
-- **Chat System**: Real-time messaging with group and individual chats
-- **Social Feed**: Post creation, likes, comments, and sharing
-- **Friends Management**: Friend requests, connections, and social discovery
-- **User Profiles**: Customizable profiles with stats and settings
-- **Mobile-First Design**: Responsive Thai-themed UI
+### ฟังก์ชันหลัก
+- **ระบบแชท**: ระบบส่งข้อความแบบเรียลไทม์ทั้งกลุ่มและส่วนบุคคล
+- **ฟีดโซเชียล**: สร้างโพสต์ ไลค์ คอมเมนต์ และแชร์
+- **การจัดการเพื่อน**: คำขอเป็นเพื่อน การเชื่อมต่อ และการค้นหาโซเชียล
+- **โปรไฟล์ผู้ใช้**: โปรไฟล์ที่ปรับแต่งได้พร้อมสถิติและการตั้งค่า
+- **ดีไซน์มือถือก่อน**: UI ที่ตอบสนองธีมไทย
 
-### Architecture Highlights
-- **Modular Auth System**: Completely separated authentication module
-- **Mock/Prod Toggle**: Environment-based switching between mock and production services
-- **Future-Proof**: Ready for Firebase, Supabase, or OAuth2 integration
-- **Clean APIs**: RESTful backend with comprehensive error handling
-- **Type Safety**: Full TypeScript coverage across frontend and backend
+### จุดเด่นด้านสถาปัตยกรรม
+- **ระบบ Auth แบบแยกโมดูล**: โมดูล authentication ที่แยกออกมาอย่างสมบูรณ์
+- **สลับ Mock/Prod**: การสลับระหว่างบริการ mock และ production ตาม environment
+- **เตรียมพร้อมอนาคต**: พร้อมสำหรับการผสานรวม Firebase, Supabase หรือ OAuth2
+- **API ที่เรียบร้อย**: Backend RESTful พร้อมการจัดการข้อผิดพลาดที่ครอบคลุม
+- **ความปลอดภัยประเภท**: ครอบคลุม TypeScript เต็มรูปแบบทั้ง frontend และ backend
 
 ## 🛠 Tech Stack
 
 ### Frontend
-- **React 18** with TypeScript
-- **Tailwind CSS** + **Shadcn UI** components
-- **React Query** for state management
-- **Wouter** for routing
-- **React Context** for global state
+- **React 18** พร้อม TypeScript
+- **Tailwind CSS** + คอมโพเนนต์ **Shadcn UI**
+- **React Query** สำหรับการจัดการ state
+- **Wouter** สำหรับ routing
+- **React Context** สำหรับ state ส่วนกลาง
 
 ### Backend
-- **Express.js** with TypeScript
-- **Drizzle ORM** for database operations
-- **Modular service architecture**
-- **Environment-based configuration**
+- **Express.js** พร้อม TypeScript
+- **Drizzle ORM** สำหรับการดำเนินการฐานข้อมูล
+- **สถาปัตยกรรมบริการแบบแยกโมดูล**
+- **การกำหนดค่าตาม environment**
 
-## 🚦 Getting Started
+## 🚦 เริ่มต้นใช้งาน
 
-### Prerequisites
+### ข้อกำหนดเบื้องต้น
 - Node.js 18+ 
-- npm or yarn
+- npm หรือ yarn
 
-### Installation
+### การติดตั้ง
 
-1. **Clone the repository**
+1. **โคลน repository**
    ```bash
    git clone <your-repo-url>
    cd sharkso-social
