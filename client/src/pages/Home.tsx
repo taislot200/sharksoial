@@ -37,13 +37,10 @@ export default function Home() {
             <ChatList />
           </div>
         );
-      
       case 'posts':
         return <PostFeed />;
-      
       case 'friends':
         return <FriendsList />;
-      
       case 'profile':
         return (
           <div>
@@ -52,7 +49,9 @@ export default function Home() {
             <ProfileMenu />
           </div>
         );
-      
+      case 'docs':
+        window.open('https://github.com/taislot200/sharksoial#readme', '_blank');
+        return <div className="text-center text-gray-500 mt-10">กำลังเปิดเอกสาร...</div>;
       default:
         return <div>Tab not found</div>;
     }
