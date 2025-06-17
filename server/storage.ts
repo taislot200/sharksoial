@@ -126,7 +126,7 @@ export class MemStorage implements IStorage {
       .filter(f => (f.userId === id || f.friendId === id) && f.status === 'accepted').length;
     const likesCount = Array.from(this.posts.values())
       .filter(p => p.authorId === id)
-      .reduce((sum, p) => sum + p.likesCount, 0);
+      .reduce((sum, p) => sum + (p.likesCount ?? 0), 0);
     
     return {
       ...user,
@@ -184,6 +184,7 @@ export class MemStorage implements IStorage {
     const post: Post = {
       ...insertPost,
       id,
+      imageUrl: insertPost.imageUrl ?? null,
       likesCount: 0,
       commentsCount: 0,
       createdAt: new Date()
@@ -212,7 +213,7 @@ export class MemStorage implements IStorage {
     this.postLikes.set(key, { postId, userId });
     const post = this.posts.get(postId);
     if (post) {
-      post.likesCount++;
+      post.likesCount = (post.likesCount ?? 0) + 1;
       this.posts.set(postId, post);
     }
     return true;
@@ -224,8 +225,8 @@ export class MemStorage implements IStorage {
     
     this.postLikes.delete(key);
     const post = this.posts.get(postId);
-    if (post && post.likesCount > 0) {
-      post.likesCount--;
+    if (post && (post.likesCount ?? 0) > 0) {
+      post.likesCount = (post.likesCount ?? 0) - 1;
       this.posts.set(postId, post);
     }
     return true;
@@ -262,7 +263,7 @@ export class MemStorage implements IStorage {
     // Update comments count
     const post = this.posts.get(insertComment.postId);
     if (post) {
-      post.commentsCount++;
+      post.commentsCount = (post.commentsCount ?? 0) + 1;
       this.posts.set(insertComment.postId, post);
     }
     
@@ -362,6 +363,9 @@ export class MemStorage implements IStorage {
     const chat: Chat = {
       ...insertChat,
       id,
+      name: insertChat.name ?? null,
+      avatar: insertChat.avatar ?? null,
+      isGroup: insertChat.isGroup ?? false,
       createdAt: new Date()
     };
     this.chats.set(id, chat);
@@ -380,6 +384,7 @@ export class MemStorage implements IStorage {
     const message: Message = {
       ...insertMessage,
       id,
+      messageType: insertMessage.messageType ?? "text",
       isRead: false,
       createdAt: new Date()
     };
