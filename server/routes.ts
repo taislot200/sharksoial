@@ -76,7 +76,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/auth/register", async (req, res) => {
     try {
-      const userData = insertPostSchema.parse(req.body);
+      const userData = insertUserSchema.parse(req.body);
       const result = await authService.register(userData);
       res.json(result);
     } catch (error) {

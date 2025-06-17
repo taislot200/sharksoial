@@ -98,6 +98,8 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id,
+      bio: insertUser.bio ?? null,
+      avatar: insertUser.avatar ?? null,
       isOnline: true,
       lastSeen: new Date(),
       createdAt: new Date()
