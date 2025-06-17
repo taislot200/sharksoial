@@ -21,8 +21,16 @@ import { SharkChat } from "./components/SharkChat";
 
 export default function App() {
   return (
-    <div style={{ minHeight: "100vh", background: "#090e10" }}>
-      <SharkChat />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AuthProvider>
+          <AppProvider>
+            <Router />
+            <SharkChat />
+            <Toaster />
+          </AppProvider>
+        </AuthProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-type Tab = 'chat' | 'posts' | 'friends' | 'profile';
+type Tab = 'chat' | 'posts' | 'friends' | 'profile' | 'docs';
 
 interface AppContextType {
   activeTab: Tab;
