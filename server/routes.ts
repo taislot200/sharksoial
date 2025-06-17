@@ -17,50 +17,100 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Initialize mock data if using mock mode
   if (config.useMock) {
+    console.log('Initializing mock data...');
+    
     // Add mock users
     const mockUsers = [mockService.getMockUser(), ...mockService.getMockUsers()];
+    const createdUserIds: number[] = [];
+    
     for (const user of mockUsers) {
       try {
-        await storage.createUser({
+        const createdUser = await storage.createUser({
           username: user.username,
-          password: user.password,
+          password: user.password || "mock-password",
           displayName: user.displayName,
           bio: user.bio,
           avatar: user.avatar
         });
+        createdUserIds.push(createdUser.id);
+        console.log(`Created user: ${createdUser.displayName} (ID: ${createdUser.id})`);
       } catch (error) {
         // User might already exist, ignore
+        console.log(`User ${user.username} already exists`);
+      }
+    }
+    
+    // Add friendships between users
+    const mockFriends = mockService.getMockFriends();
+    for (const friend of mockFriends) {
+      try {
+        const createdFriend = await storage.createUser({
+          username: friend.username,
+          password: friend.password || "mock-password",
+          displayName: friend.displayName,
+          bio: friend.bio,
+          avatar: friend.avatar
+        });
+        
+        // Create friendship with first user (admin)
+        await storage.sendFriendRequest(1, createdFriend.id);
+        await storage.acceptFriendRequest(createdFriend.id, 1);
+        console.log(`Created friend: ${createdFriend.displayName}`);
+      } catch (error) {
+        console.log(`Friend ${friend.username} already exists`);
+      }
+    }
+    
+    // Create friendships between existing users
+    if (createdUserIds.length >= 2) {
+      for (let i = 1; i < createdUserIds.length; i++) {
+        try {
+          await storage.sendFriendRequest(createdUserIds[0], createdUserIds[i]);
+          await storage.acceptFriendRequest(createdUserIds[i], createdUserIds[0]);
+        } catch (error) {
+          // Friendship might already exist
+        }
       }
     }
     
     // Add mock posts
     const mockPosts = mockService.getMockPosts();
     for (const post of mockPosts) {
-      await storage.createPost({
-        authorId: post.authorId,
-        content: post.content,
-        imageUrl: post.imageUrl
-      });
+      try {
+        await storage.createPost({
+          authorId: post.authorId,
+          content: post.content,
+          imageUrl: post.imageUrl
+        });
+      } catch (error) {
+        console.log('Error creating post:', error);
+      }
     }
     
     // Add mock chats and messages
     const mockChats = mockService.getMockChats();
     for (const chat of mockChats) {
-      const createdChat = await storage.createChat({
-        name: chat.name,
-        isGroup: chat.isGroup,
-        avatar: chat.avatar
-      });
-      
-      if (chat.lastMessage) {
-        await storage.createMessage({
-          chatId: createdChat.id,
-          senderId: chat.lastMessage.senderId,
-          content: chat.lastMessage.content,
-          messageType: chat.lastMessage.messageType
+      try {
+        const createdChat = await storage.createChat({
+          name: chat.name,
+          isGroup: chat.isGroup,
+          avatar: chat.avatar
         });
+        
+        if (chat.lastMessage) {
+          await storage.createMessage({
+            chatId: createdChat.id,
+            senderId: chat.lastMessage.senderId,
+            content: chat.lastMessage.content,
+            messageType: chat.lastMessage.messageType
+          });
+        }
+      } catch (error) {
+        console.log('Error creating chat:', error);
       }
     }
+    
+    console.log('Mock data initialization completed');
   }
 
   // Auth routes

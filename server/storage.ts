@@ -271,12 +271,27 @@ export class MemStorage implements IStorage {
   }
 
   async getFriends(userId: number): Promise<User[]> {
+    console.log(`Getting friends for user ${userId}`);
+    console.log('All friendships:', Array.from(this.friendships.values()));
+    
     const friendships = Array.from(this.friendships.values())
-      .filter(f => (f.userId === userId || f.friendId === userId) && f.status === 'accepted');
+      .filter(f => {
+        const isRelated = (f.userId === userId || f.friendId === userId);
+        const isAccepted = f.status === 'accepted';
+        console.log(`Friendship ${f.id}: userId=${f.userId}, friendId=${f.friendId}, status=${f.status}, isRelated=${isRelated}, isAccepted=${isAccepted}`);
+        return isRelated && isAccepted;
+      });
+    
+    console.log('Matching friendships:', friendships);
     
     const friendIds = friendships.map(f => f.userId === userId ? f.friendId : f.userId);
+    console.log('Friend IDs:', friendIds);
+    
     const friends = await Promise.all(friendIds.map(id => this.getUser(id)));
-    return friends.filter(Boolean) as User[];
+    const validFriends = friends.filter(Boolean) as User[];
+    console.log('Valid friends:', validFriends.map(f => f.displayName));
+    
+    return validFriends;
   }
 
   async getFriendRequests(userId: number): Promise<User[]> {
@@ -288,6 +303,14 @@ export class MemStorage implements IStorage {
   }
 
   async sendFriendRequest(userId: number, friendId: number): Promise<Friendship> {
+    // Check if friendship already exists
+    const existingFriendship = Array.from(this.friendships.values())
+      .find(f => (f.userId === userId && f.friendId === friendId) || (f.userId === friendId && f.friendId === userId));
+    
+    if (existingFriendship) {
+      return existingFriendship;
+    }
+    
     const id = this.currentFriendshipId++;
     const friendship: Friendship = {
       id,
@@ -297,6 +320,7 @@ export class MemStorage implements IStorage {
       createdAt: new Date()
     };
     this.friendships.set(id, friendship);
+    console.log(`Created friendship request: ${userId} -> ${friendId}`);
     return friendship;
   }
 
@@ -304,10 +328,14 @@ export class MemStorage implements IStorage {
     const friendship = Array.from(this.friendships.values())
       .find(f => f.userId === friendId && f.friendId === userId && f.status === 'pending');
     
-    if (!friendship) return false;
+    if (!friendship) {
+      console.log(`No pending friendship found between ${friendId} and ${userId}`);
+      return false;
+    }
     
     friendship.status = 'accepted';
     this.friendships.set(friendship.id, friendship);
+    console.log(`Accepted friendship: ${friendId} <-> ${userId}`);
     return true;
   }
 
