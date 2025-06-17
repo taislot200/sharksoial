@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { authService } from "./services/auth.service";
 import { MockService } from "./services/mock.service";
 import { config } from "./services/config.service";
-import { insertPostSchema, insertCommentSchema, insertFriendshipSchema, insertChatSchema, insertMessageSchema } from "@shared/schema";
+import { insertUserSchema, insertPostSchema, insertCommentSchema, insertFriendshipSchema, insertChatSchema, insertMessageSchema } from "@shared/schema";
 import { z } from "zod";
 
 const loginSchema = z.object({
